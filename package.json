@@ -7,7 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "prepublish": "./node_modules/.bin/babel ./src --out-dir ./lib"
+    "prepublish": "./node_modules/.bin/babel ./src --out-dir ./lib",
+    "start": "webpack-dev-server --content-base static/"
   },
   "repository": {
     "type": "git",
