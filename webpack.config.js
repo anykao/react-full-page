@@ -1,5 +1,5 @@
-const path = require('path');
-const HtmlwebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlwebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -7,16 +7,25 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.join(__dirname, '/static/'),
+    path: path.join(__dirname, '/dist'),
     publicPath: '/',
     chunkFilename: '[id].chunk.js'
   },
+  devServer: {
+    contentBase: '/dist',
+    port: 3000
+  },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/
+      },
+      {
+        test: /\.ts?$/,
+        loader: "ts-loader"
       }
     ]
   },
@@ -24,5 +33,9 @@ module.exports = {
     new HtmlwebpackPlugin({
       title: 'Full Page'
     })
-  ]
-};
+  ],
+  externals: {
+    "react": "React",
+    "react-dom": "ReactDOM"
+  }
+}
